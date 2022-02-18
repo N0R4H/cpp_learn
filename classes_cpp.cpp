@@ -7,27 +7,27 @@
 using namespace std;
 
 
-int _(const std::string& a){
-	int i = 0, j = 0;
-    unsigned l1 = a.size();
-    for (unsigned k = a.size()-1;k < -1; --k){
-      i+=((int)a[k]-48)*pow(10,l1+~(int)k);
-    }
-    return i;
+class ABC{
+  public:
+      int number;
+      string str;
+
 }
-
-
-
-string sum_str(const std::string& a, const std::string& b) {
-    return to_string(_(a) + _(b));
-}
-
-
 
 
 int main(){
+  ABC obj1;
 
-	cout<<sum_str("123","345")<<endl;
-  int a = 5
+  obj1.number = 45;
+  obj1.str = "type ABC obj1"
+
+  ABC obj2;
+
+  obj2.number = 24;
+  obj2.str = "type ABC obj2"
+
+  cout<<obj1.number + obj2.number<<endl;
+
+  	
 
 }
