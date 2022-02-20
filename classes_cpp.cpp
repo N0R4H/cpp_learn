@@ -32,16 +32,24 @@ class ABC{          // class name
     str = p2;
   };
 
+  //copy constructor
+  ABC(ABC &obj){
+    number = obj.number;
+    str    = obj.str;
+
+  };
+
 
 };
 
 int main(){
 
 
-  ABC obj1;                 //creating object (obj1) of type class ABC
-  ABC obj2;  
 
-  cout<<obj1.str<<" "<<obj1.number<<endl;   //default attribute
+  ABC obj1;                                 //creating object (obj1) of type class ABC
+  ABC obj2;  
+  ABC obj3(1,"different way of intializing");              //different way of creating an object
+  
 
   //=============================OVERLOADING==========================================
   // OVERLOADING is a feature of OOP by which we can create one or more objects/functions.
@@ -57,14 +65,21 @@ int main(){
                           //type class ABC  using constructor of EXACT attribute type.
 
   cout<<obj2.str<<" "<<obj2.number<<endl;  //changing default to custom attributes 
-  //===================================================================================
 
   obj1.number = 45;           //setting integer attribute  of obj1
   obj1.str = "type ABC obj1"; //setting string  attribute  of obj1
 
-                   //creating object (obj2) of type class ABC
 
   obj2.number = 24;           //setting integer attribute  of obj1
   obj2.str = "type ABC obj2"; //setting string  attribute  of obj1
+  
   cout<<obj1.number+obj2.number<<endl;
+
+  ABC obj4(obj3);     //shallow copy of obj3 contents to obj4 
+
+  cout<<obj4.number<<"and"<<obj3.number<<endl;
+
+  //===================================================================================
+
+  
 }
