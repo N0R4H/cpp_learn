@@ -9,10 +9,18 @@ using namespace std;
 
 
 class ABC{          // class name
-  public:           // access identifier
+
+  private:
+      int hidden_number;
+      string hidden_str;
+
+      void privatefn(){
+        cout<<"this a private member function";
+      }
+
+  public:           // public access modifier
       int number;   // integer attribute
       string str;   // string attribute
-
 
   //default constructor
   ABC(){
