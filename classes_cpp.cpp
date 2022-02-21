@@ -46,9 +46,41 @@ class ABC{          // class name
     str    = obj.str;
 
   };
+  ~ABC(){
+    //cout<<"Destructor invoked"; //destructor destroys the object created
+    
+  }
+
+};
+
+
+class CDE{
+private:
+  int hidden_number;
+  string hidden_str;
+
+ // hidden_number = 69;
+  //hidden_str = "Secret";
+  
+public:
+  int number;
+  string str;
+
+  void setdata(){
+      hidden_number = 21;     //only member functions can access private attributes
+      hidden_str = "hidden";
+  }
+
+  void getdata(){
+      cout<<"Number and string are:"<<number<<", "<<str<<endl;
+      cout<<"HIDDEN Number and string are:"<<hidden_number<<", "<<hidden_str<<endl;
+  };
+
 
 
 };
+
+
 
 int main(){
 
@@ -64,12 +96,12 @@ int main(){
   // C++ tries to find the EXACT function/constructor name with EXACT parameter types
   // Hence we can have 2 different constructors/functions with same name but different parameter types
 
-  obj1 = ABC(2,97);       //creating object (obj1) of 
+  //obj1 = ABC(23,97);       //creating object (obj1) of 
                           //type class ABC  using constructor of EXACT attribute type.
 
   cout<<obj1.str<<" "<<obj1.number<<endl;   //changing default to custom attributes 
 
-  obj2 = ABC(3,"parameterized constructor");//creating object (obj1) of 
+  //obj2 = ABC(3,"parameterized constructor");//creating object (obj1) of 
                           //type class ABC  using constructor of EXACT attribute type.
 
   cout<<obj2.str<<" "<<obj2.number<<endl;  //changing default to custom attributes 
@@ -89,5 +121,13 @@ int main(){
 
   //===================================================================================
 
+  CDE obj6;
+  obj6.number = 43;
+  obj6.str = "hello";
+  obj6.setdata();
+  obj6.getdata();
+
+
+  
   
 }
