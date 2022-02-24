@@ -61,6 +61,8 @@ private:
 
  // hidden_number = 69;
   //hidden_str = "Secret";
+
+
   
 public:
   int number;
@@ -75,6 +77,10 @@ public:
       cout<<"Number and string are:"<<number<<", "<<str<<endl;
       cout<<"HIDDEN Number and string are:"<<hidden_number<<", "<<hidden_str<<endl;
   };
+
+  int num(){
+    return hidden_number;
+  }
 
 
 
@@ -128,6 +134,4 @@ int main(){
   obj6.getdata();
 
 
-  
-  
 }
