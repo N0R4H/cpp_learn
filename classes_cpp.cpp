@@ -167,4 +167,18 @@ int main(){
   obj7.setdata(65);         //using member function of derived class to set protected data
   cout<<obj7.show()<<endl;  
   //------------------------------------------
+
+  //===========================Inhertiance========================================================
+  //The ability of a class to derive characteristics from another, is called Inheritance.
+  //Super class (parent)
+  //        |   
+  //        |
+  //        V 
+  //Sub class (child)
+  //class child: {access specifier} parent
+  //if access specifier is:
+  //                        public: no change
+  //                        protected:  public -> protected
+  //                        private:    public -> private, public -> private
+  //
 }
