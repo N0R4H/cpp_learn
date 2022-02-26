@@ -55,6 +55,10 @@ class ABC{          // class name
 
 
 class CDE{
+
+protected:
+  int protected_number=32;
+
 private:
   int hidden_number;
   string hidden_str;
@@ -62,8 +66,6 @@ private:
  // hidden_number = 69;
   //hidden_str = "Secret";
 
-
-  
 public:
   int number;
   string str;
@@ -82,7 +84,21 @@ public:
     return hidden_number;
   }
 
+};
 
+
+class daughter: public CDE
+{
+
+public:
+
+  void setdata(int a){
+    protected_number = a;
+  }
+
+  int show(){
+    return protected_number;
+  }
 
 };
 
@@ -127,11 +143,28 @@ int main(){
 
   //===================================================================================
 
+  //==================Access identifiers===============================================
+  // There are 3 access identifiers:
+  //public, private and protected.
+
+  //PUBLIC:    Members under this can be accessed from ANYWHERE.
+  //PRIVATE:   Members under this can be accessed only by MEMBER FUNCTIONS.
+  //PROTECTED: Members under this can be accessed by only a MEMBER FUNCTION OF DERIVED CLASS.
+  
+  //-----------------Public--------------------
   CDE obj6;
-  obj6.number = 43;
-  obj6.str = "hello";
-  obj6.setdata();
+
+  obj6.number = 43;     //setting public member
+  obj6.str = "hello";   //setting public member
+  //-----------------Private-------------------
+  obj6.setdata();           //setting of private member using member function
+  
   obj6.getdata();
-
-
+  cout<<obj6.num()<<endl;
+  //----------------Protected-----------------
+  daughter obj7;
+  cout<<obj7.show()<<endl;  //show protected member using member function of derived class
+  obj7.setdata(65);         //using member function of derived class to set protected data
+  cout<<obj7.show()<<endl;  
+  //------------------------------------------
 }
