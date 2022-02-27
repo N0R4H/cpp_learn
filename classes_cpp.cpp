@@ -87,7 +87,7 @@ public:
 };
 
 
-class daughter: public CDE
+class daughter: public CDE//daughter inheriting CDE with a public access specification
 {
 
 public:
@@ -102,19 +102,19 @@ public:
 
 };
 
-class son: private CDE{
+class son: protected CDE{ //son inheriting CDE with a protected access specification
 
 public:
   void setdata(int a){
-    hidden_number = a;
+    protected_number = a;
 
   }
   int  show(){
-    return hidden_number;
+    return protected_number;
   }
 
 
-}
+};
 
 
 
@@ -194,10 +194,13 @@ int main(){
   //                        public: no change
   //                        protected:  public -> protected
   //                        private:    public -> private, public -> private
-  //
-
+  // Private members of a base class can only be accessed by base member functions
   
+  son obj8; //
 
+  cout<<obj8.show()<<endl;  //using protected subclass member function to show superclass data
+  obj8.setdata(45);//using protected subclass member function to change superclass data
+  cout<<obj8.show()<<endl;
 
 
 }
