@@ -102,6 +102,20 @@ public:
 
 };
 
+class son: private CDE{
+
+public:
+  void setdata(int a){
+    hidden_number = a;
+
+  }
+  int  show(){
+    return hidden_number;
+  }
+
+
+}
+
 
 
 int main(){
@@ -181,4 +195,9 @@ int main(){
   //                        protected:  public -> protected
   //                        private:    public -> private, public -> private
   //
+
+  
+
+
+
 }
