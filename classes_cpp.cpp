@@ -56,8 +56,7 @@ class ABC{          // class name
 
 class CDE{
 
-protected:
-  int protected_number=32;
+
 
 private:
   int hidden_number;
@@ -65,6 +64,13 @@ private:
 
  // hidden_number = 69;
   //hidden_str = "Secret";
+
+protected:
+  int protected_number=32;
+
+  void show(){
+    cout<<hidden_str;
+  }
 
 public:
   int number;
@@ -116,10 +122,60 @@ public:
 
 };
 
+class geom{
+
+private:
+  int secret;
+
+protected:
+  float radius;
+  float length;
+  float breadth;
+
+public:
+
+  void setradius(float r){
+    radius = r;
+    secret = 3;
+  }
+
+  void setlenbred(float l, float b){
+    length = l;
+    breadth = b;
+    secret = 8;
+  }
+
+  void showsecret(){
+    cout<<"secret is,"<<secret<<endl;
+  }
+
+};
+
+class circle: public geom{
+
+    public:
+      void show(){
+        cout<<"radius is, "<<radius<<endl;
+      }
+
+};
+
+class rectangle: public geom{
+
+public:
+      void show(){
+        cout<<"length is, "<<length<<"breadth is, "<<breadth<<endl;
+      }
+};
+
+
+
+
 
 
 int main(){
 
+  
 
 
   ABC obj1;                                 //creating object (obj1) of type class ABC
@@ -202,5 +258,14 @@ int main(){
   obj8.setdata(45);//using protected subclass member function to change superclass data
   cout<<obj8.show()<<endl;
 
+  circle a;         //subclass circle derived from super class geom
+  a.setradius(43);  //
+  a.show();         //cannot use cout<<a.radius, since member is protected!!!
 
+
+  rectangle b;        //subclass rectangle derived from super class geom
+  b.setlenbred(10,12);
+  b.show();         //cannot use cout<<b.length<<b.breadth, since member is protected!!!
+
+  b.showsecret();   //
 }
