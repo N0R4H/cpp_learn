@@ -24,6 +24,7 @@ class ABC{          // class name
 
   //default constructor
   ABC(){
+
     number = 1;
     str = "default constructor";
   };
@@ -133,12 +134,8 @@ private:
   int secret;
 
 protected:
-  float radius;
-  float length;
-  float breadth;
-  float l1;
-  float l2;
-  float l3;
+  float radius, length, breadth, l1, l2, l3;
+
 
 public:
 
@@ -168,7 +165,7 @@ public:
 };
 
 class circle: public geom{
-
+    cout<<"this circle"<<endl;
     public:
       void show(){
         cout<<"radius is, "<<radius<<endl;
@@ -280,6 +277,7 @@ int main(){
   cout<<obj8.show()<<endl;
 
   circle a;         //subclass circle derived from super class geom
+
   a.setradius(43);  //
   a.show();         //cannot use cout<<a.radius, since member is protected!!!
 
@@ -295,5 +293,7 @@ int main(){
   c.settria(1,2,3);
   c.show();
   c.showsecret();
+
+  
 
 }
