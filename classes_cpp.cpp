@@ -131,21 +131,32 @@ protected:
   float radius;
   float length;
   float breadth;
+  float l1;
+  float l2;
+  float l3;
 
 public:
 
   void setradius(float r){
     radius = r;
-    secret = 3;
+    secret = 0;
   }
 
   void setlenbred(float l, float b){
     length = l;
     breadth = b;
-    secret = 8;
+    secret = 4;
   }
 
-  void showsecret(){
+  void settria(float a, float b, float c);{
+    l1 = a;
+    l2 = b;
+    l3 = c;
+    secret = 3
+
+  }
+
+  void showsecret(){                  
     cout<<"secret is,"<<secret<<endl;
   }
 
@@ -168,9 +179,11 @@ public:
       }
 };
 
+class triangle: protected geom{
 
 
 
+}
 
 
 int main(){
@@ -267,5 +280,6 @@ int main(){
   b.setlenbred(10,12);
   b.show();         //cannot use cout<<b.length<<b.breadth, since member is protected!!!
 
-  b.showsecret();   //
+  b.showsecret();   //show private data
+  //
 }
