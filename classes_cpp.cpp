@@ -122,6 +122,11 @@ public:
 
 };
 
+//             geom             (superclass)
+//    __________|__________
+//    |         |         |
+//  circle rectangle triangle   (subclasses)
+
 class geom{
 
 private:
@@ -148,11 +153,11 @@ public:
     secret = 4;
   }
 
-  void settria(float a, float b, float c);{
+  void settria(float a, float b, float c){
     l1 = a;
     l2 = b;
     l3 = c;
-    secret = 3
+    secret = 3;
 
   }
 
@@ -179,11 +184,14 @@ public:
       }
 };
 
-class triangle: protected geom{
+class triangle: public geom{
+public:
+  void show(){
+    cout<<"The sides are, "<<l1<<l2<<l3<<endl;
+  }
 
 
-
-}
+};
 
 
 int main(){
@@ -265,7 +273,7 @@ int main(){
   //                        private:    public -> private, public -> private
   // Private members of a base class can only be accessed by base member functions
   
-  son obj8; //
+  son obj8; 
 
   cout<<obj8.show()<<endl;  //using protected subclass member function to show superclass data
   obj8.setdata(45);//using protected subclass member function to change superclass data
@@ -282,4 +290,10 @@ int main(){
 
   b.showsecret();   //show private data
   //
+
+  triangle c;
+  c.settria(1,2,3);
+  c.show();
+  c.showsecret();
+
 }
