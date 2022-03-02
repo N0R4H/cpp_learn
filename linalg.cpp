@@ -6,14 +6,15 @@
 using namespace std;
 
 
-//transpose of
-static void transpose(std::vector<std::vector<float>>& A){
+// G = A.A.t
+static void gram_matrix(std::vector<std::vector<float>>& A){
 
-	if (A[0].size() != A.size()){
+	if (A[0].size() != A.size()){	//FOR NOW ONLY SQUARE MATRICES
 		cout<<"Error";
 	}
 	else{
-	int l = A.size()
+	
+	int l = A.size();
 	std::vector<std::vector<float>> L;
 	std::vector<float> v;
 
@@ -45,7 +46,7 @@ static void transpose(std::vector<std::vector<float>>& A){
 		}
 
 	}
-
+	cout<<"Gramian matrix is,"<<endl;
 	for (int i = 0; i<3; ++i){
 		for (int j = 0; j<3; ++j){
 			cout<<L[i][j];
@@ -60,9 +61,8 @@ int main(){
 
 	std::vector<std::vector<float>> A = {{4.0, 0.0, 0.0}, 
 										 {2.0, 3.0, 0.0}, 
-										 };
-	transpose(A);
-
+										 {1.0, 0.0, 0.0}};
+	gram_matrix(A);
 
 	return 0;
 }
