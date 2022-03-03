@@ -36,8 +36,8 @@ static void gram_matrix(std::vector<std::vector<float>>& A){
 		cout<<endl;
 	}
 	int res = 0;
-	for (int _ = 0; _<3; ++_){
-		for (int r =0; r<3; ++r){
+	for (int _ = 0; _<l; ++_){
+		for (int r =0; r<l; ++r){
 			for (int c = 0; c<3; ++c){
 				res+=A[_][c]*A[r][c];
 			}
@@ -90,8 +90,8 @@ int main(){
 	std::vector<std::vector<float>> A = {{4.0, 0.0, 0.0}, 
 										 {2.0, 3.0, 0.0}, 
 										 {1.0, 0.0, 0.0}};
-	gram_matrix(A);
 	transpose(A);
+	gram_matrix(A);
 	return 0;
 }
 
