@@ -57,14 +57,41 @@ static void gram_matrix(std::vector<std::vector<float>>& A){
 }
 }
 
+static void transpose(std::vector<std::vector<float>>& v){
+
+		int rows = v.size();
+		int cols = v[0].size();
+
+		std::vector<std::vector<float> > L;
+		std::vector<float> A;
+
+		for (int i = 0; i<rows; ++i){
+			 for (int j = 0; j< cols; ++j){
+			 	A.push_back(v[j][i]);
+			 }
+			L.push_back(A);
+			A = {};
+		}
+
+		cout<<"transpose is,"<<endl;
+		for (int i = 0; i<rows; ++i){
+			 for (int j = 0; j< cols; ++j){
+			 	cout<<L[i][j];
+			 	cout<<", ";
+			 }
+			 cout<<endl;
+		}
+
+}
+
+
 int main(){
 
 	std::vector<std::vector<float>> A = {{4.0, 0.0, 0.0}, 
 										 {2.0, 3.0, 0.0}, 
 										 {1.0, 0.0, 0.0}};
 	gram_matrix(A);
-
+	transpose(A);
 	return 0;
 }
-
 
