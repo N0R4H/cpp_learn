@@ -88,8 +88,8 @@ static void transpose(std::vector<std::vector<float>>& v){
 int main(){
 
 	std::vector<std::vector<float>> A = {{4.0, 0.0, 0.0}, 
-										 {2.0, 3.0, 0.0}, 
-										 {1.0, 0.0, 0.0}};
+										{2.0, 3.0, 0.0}, 
+										{1.0, 0.0, 0.0}};
 	transpose(A);
 	gram_matrix(A);
 	return 0;
