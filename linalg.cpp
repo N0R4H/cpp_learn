@@ -83,31 +83,47 @@ static void transpose(std::vector<std::vector<float>>& v){
 		}
 
 }
+float determinant(std::vector<std::vector<float>> v){
 
-float determinant(std::vector<std::vector<float>>& v){
-
-	if (v.size() != v[0].size()){
-		return -1.0
-	}
-	else if (v.size() == 2){
-
-
-
+	if (v.size() == 2){
+		return v[0][0]*v[1][1] - v[0][1]*v[1][0];
 	}
 
+	else{
+		
+		int length = v.size();
+		float result = 0.0;
+		for (int i = 0; i < length; ++i){
+			std::vector<std::vector<float>> L;
+			for (int row = 1; row < length; ++row){
+				 std::vector<float> a;
+				 for (int col = 0; col < length; ++col){
+				 		if (col!=i){
+				 			a.push_back(v[row][col]);
+				 			}
+				} 
+				if (a.size()>0){
+					L.push_back(a);
+				}
+			}
+			result+=pow(-1, ~i&1)*v[0][i]*determinant(L);
+		}
+	return result;
+	}
+	
 }
-
 
 
 
 int main(){
 
-	std::vector<std::vector<float>> A = {{4.0, 0.0, 0.0}, 
-										{2.0, 3.0, 0.0}, 
-										{1.0, 0.0, 0.0}};
+	std::vector<std::vector<float>> A = {{3.0, 7.0, 1.0}, 
+										{-5.0, 0.0, 4.0}, 
+										{1.0, 32.0, -5.0}};
+
 	transpose(A);
 	gram_matrix(A);
-
+	cout<<determinant(A)<<endl;
 	return 0;
 }
 
