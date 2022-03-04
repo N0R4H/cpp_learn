@@ -83,7 +83,7 @@ static void transpose(std::vector<std::vector<float>>& v){
 		}
 
 }
-float determinant(std::vector<std::vector<float>> v){
+float determinant(std::vector<std::vector<float>>& v){
 
 	if (v.size() == 2){
 		return v[0][0]*v[1][1] - v[0][1]*v[1][0];
@@ -106,7 +106,7 @@ float determinant(std::vector<std::vector<float>> v){
 					L.push_back(a);
 				}
 			}
-			result+=pow(-1, ~i&1)*v[0][i]*determinant(L);
+			result+=pow(-1, i&1)*v[0][i]*determinant(L);
 		}
 	return result;
 	}
