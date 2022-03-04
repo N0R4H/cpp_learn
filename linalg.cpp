@@ -84,6 +84,21 @@ static void transpose(std::vector<std::vector<float>>& v){
 
 }
 
+float determinant(std::vector<std::vector<float>>& v){
+
+	if (v.size() != v[0].size()){
+		return -1.0
+	}
+	else if (v.size() == 2){
+
+
+
+	}
+
+}
+
+
+
 
 int main(){
 
@@ -92,6 +107,7 @@ int main(){
 										{1.0, 0.0, 0.0}};
 	transpose(A);
 	gram_matrix(A);
+
 	return 0;
 }
 
