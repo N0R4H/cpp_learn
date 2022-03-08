@@ -84,8 +84,11 @@ static void transpose(std::vector<std::vector<float>>& v){
 
 }
 float determinant(std::vector<std::vector<float>>& v){
+	if (v.size() == 1){
+		return v[0][0];
+	}
 
-	if (v.size() == 2){
+	else if (v.size() == 2){
 		return v[0][0]*v[1][1] - v[0][1]*v[1][0];
 	}
 
@@ -113,17 +116,33 @@ float determinant(std::vector<std::vector<float>>& v){
 	
 }
 
+static void trace(std::vector<std::vector<float>>& v){
+		if (v.size() != v[0].size()){
+			cout<<"Not square matrix"<<endl;
+		}
+		else{
+			float res = 0.0;
+			for (int i = 0; i< v.size(); ++i){
+				res+=v[i][i];
+			}
+			cout<<"Trace of matrix is,"<<res<<endl;
+
+		}
+
+
+}
 
 
 int main(){
 
-	std::vector<std::vector<float>> A = {{3.0, 7.0, 1.0}, 
-										{-5.0, 0.0, 4.0}, 
-										{1.0, 32.0, -5.0}};
+	std::vector<std::vector<float>> A = {{2.0, 5.0, 3.0}, 
+										{1.0, -2.0, -1.0}, 
+										{1.0, 3.0, 4.0}};
 
 	transpose(A);
 	gram_matrix(A);
 	cout<<determinant(A)<<endl;
+	trace(A);
 	return 0;
 }
 
