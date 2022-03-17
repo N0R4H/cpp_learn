@@ -133,28 +133,52 @@ static void trace(std::vector<std::vector<float>>& v){
 
 }
 static void covariance(std::vector<std::vector<float>>& v){
-	if (v.size() != v[0].size()){
-			cout<<"Not square matrix"<<endl;
-		}
+
 	std::vector<float> means;	
-	for(int i = 0; i < v.size(); ++i ){
+	for(int col = 0; col < v.size(); ++col ){
 		float r = 0.0;
-		for (auto j:v[i]){
-			r+=j;
+		for (int row = 0; row< v[0].size(); ++row){
+			r+=v[row][col];
 		}
 		means.push_back(r/v.size());
 	}
-	std::vector<float> variance;
-	for (int i = 0; i < v.size(); ++i ){
+	for(int col = 0; col < v.size(); ++col ){
 		float r = 0.0;
-		for (int j = 0; j<v.size(); ++j){
-			r+=(v[i][j] - means[i])*(v[i][j] - means[i])
-		}
-		variance.push_back(r/v.size())
+		for (int row = 0; row< v[0].size(); ++row){
+			v[row][col]-=means[col];
+		}	
 	}
-	//tbd
+	cout<<"Deviations are,.."<<endl;
+	for(int col = 0; col < v.size(); ++col ){
+		float r = 0.0;
+		for (int row = 0; row< v[0].size(); ++row){
+			cout<<v[col][row]<<", ";
+		}
+		cout<<endl;
+		
+	}
+	std::vector<std::vector<float>> res;
+	for (int k = 0; k < v.size(); ++k){
+		std::vector<float> l;
+		for(int col = 0; col < v.size(); ++col ){
+			float r = 0.0;
+			for (int row = 0; row< v[0].size(); ++row){
+					r+=v[row][k]*v[row][col];
+			}
+			r = r/v.size();
+			l.push_back(r);
+	}
+	res.push_back(l);
 
-
+}
+	cout<<"covariance are,.."<<endl;
+	for(int col = 0; col < v.size(); ++col ){
+		for (int row = 0; row< v[0].size(); ++row){
+			cout<<res[col][row]<<", ";
+		}
+		cout<<endl;
+		
+	}
 
 }
 
