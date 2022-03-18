@@ -8,7 +8,7 @@ using namespace std;
 
 
 // G = A.A.t
-static void gram_matrix(std::vector<std::vector<float>>& A){
+static void gram_matrix(std::vector<std::vector<float>> A){
 
 	if (A[0].size() != A.size()){	//FOR NOW ONLY SQUARE MATRICES
 		cout<<"Error";
@@ -58,7 +58,7 @@ static void gram_matrix(std::vector<std::vector<float>>& A){
 }
 }
 
-static void transpose(std::vector<std::vector<float>>& v){
+static void transpose(std::vector<std::vector<float>> v){
 
 		int rows = v.size();
 		int cols = v[0].size();
@@ -84,7 +84,7 @@ static void transpose(std::vector<std::vector<float>>& v){
 		}
 
 }
-float determinant(std::vector<std::vector<float>>& v){
+float determinant(std::vector<std::vector<float>> v){
 	if (v.size() == 1){
 		return v[0][0];
 	}
@@ -117,7 +117,7 @@ float determinant(std::vector<std::vector<float>>& v){
 	
 }
 
-static void trace(std::vector<std::vector<float>>& v){
+static void trace(std::vector<std::vector<float>> v){
 		if (v.size() != v[0].size()){
 			cout<<"Not square matrix"<<endl;
 		}
@@ -132,7 +132,9 @@ static void trace(std::vector<std::vector<float>>& v){
 
 
 }
-static void covariance(std::vector<std::vector<float>>& v){
+static void covariance(std::vector<std::vector<float>> v){
+
+	//Cov(X) = (X-xm).T x (X-xm)
 
 	std::vector<float> means;	
 	for(int col = 0; col < v.size(); ++col ){
@@ -189,11 +191,14 @@ int main(){
 										{1.0, -2.0, -1.0}, 
 										{1.0, 3.0, 4.0}};
 
+
+	std::vector<std::vector<float>> B = {{1,2},{2,3}}
+
 	transpose(A);
 	gram_matrix(A);
 	cout<<determinant(A)<<endl;
 	trace(A);
-	covariance(A);
+	covariance(B);
 	return 0;
 }
 
