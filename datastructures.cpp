@@ -209,6 +209,20 @@ std::string reverse_words(const std::string& str) {
 }
 
 
+int max(std::vector<int> v){
+  if (v.size()<=1){
+      return v.size()?v[0]:0;
+  }
+  int max = v[0];
+  for (int i = 1; i<v.size(); ++i){
+        if (max < v[i]){
+          max = v[i];
+        }
+  }
+  return max;
+
+}
+
 string bin(int a){
    return a==0?"":a&1?bin(a>>1).append("1"):bin(a>>1).append("0"); 
 }
@@ -242,6 +256,7 @@ int main(){
     // lists();
     // dicts();
     // string a = "Hello World!";
+    //cout<<max({6})<<endl;
     return 0;
 }
 

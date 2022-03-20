@@ -2,9 +2,12 @@
 #include <cmath>
 #include <vector>
 #include <string>
+#include <Eigen/Dense>		//g++ -I /path/to/eigen/ my_program.cpp -o my_program 
 
 
 using namespace std;
+using namespace Eigen;
+
 
 
 // G = A.A.t
@@ -192,13 +195,21 @@ int main(){
 										{1.0, 3.0, 4.0}};
 
 
-	std::vector<std::vector<float>> B = {{1,2},{2,3}}
+	std::vector<std::vector<float>> B = {{1,2},{2,3}};
 
 	transpose(A);
 	gram_matrix(A);
 	cout<<determinant(A)<<endl;
 	trace(A);
 	covariance(B);
+	//using eigen package instead of reinventing the wheel
+	  MatrixXd m(2,2);
+  m(0,0) = 3;
+  m(1,0) = 2.5;
+  m(0,1) = -1;
+  m(1,1) = m(1,0) + m(0,1);
+
+
 	return 0;
 }
 
