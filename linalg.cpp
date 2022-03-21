@@ -203,12 +203,43 @@ int main(){
 	trace(A);
 	covariance(B);
 	//using eigen package instead of reinventing the wheel
-	  MatrixXd m(2,2);
-  m(0,0) = 3;
-  m(1,0) = 2.5;
-  m(0,1) = -1;
-  m(1,1) = m(1,0) + m(0,1);
 
+
+	  Matrix3d m(3,3);
+
+	  for (int i = 0; i<3; ++i){
+	  	for (int j = 0; j<3; ++j){
+	  			m(i,j) = 3.0;
+	  	}
+	  }
+	  
+	  Matrix3d a(3,3);
+
+	  for (int i = 0; i<3; ++i){
+	  	for (int j = 0; j<3; ++j){
+	  			a(i,j) = 2.0;
+	  	}
+	  }
+	  cout<<a+m<<endl;	//matrix addition
+
+	  cout<<a*m<<endl; //matrix multiplication (dot)
+
+	  MatrixXd b(5,3);	
+	  for (int i = 0; i<5; ++i){
+	  	for (int j = 0; j<3; ++j){
+	  			b(i,j) = 2.0;
+	  	}
+	  }
+	  cout<<b<<endl;
+
+	  MatrixXd d(3,2);
+	  for (int i = 0; i<3; ++i){
+	  	for (int j = 0; j<2; ++j){
+	  			d(i,j) = 4.0;
+	  	}
+	  }
+	  cout<<d<<endl;
+	  cout<<b*d<<endl;
 
 	return 0;
 }
