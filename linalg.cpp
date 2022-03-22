@@ -269,6 +269,14 @@ int main(){
 	  cout<<"-------------"<<endl;
 	  cout<<b<<endl;            //3x5
 
+	  //Vectors;
+	  //typedef Matrix<float, dynamic, 1> VectorXf
+	  //Vector.shape = (N, 1)
+	  
+	  typedef Matrix <float, 2,1> myvec;
+	  myvec t;
+	  t(0,0) =1; t(1,0) = 2;
+	  cout<<t<<endl;
 
 	return 0;
 }
