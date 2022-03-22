@@ -223,7 +223,8 @@ int main(){
 
     //constructor matrix
     // typedef Matrix<float, Dynamic, Dynamic> MatrixXf   (MatrixXF is of type Matrix, float, dynamic, dynamic)
-    // MatrixXf m;      m is constructor of dynamic float matrix
+    // Matrix.shape = (N, M)
+    //MatrixXf m;      m is constructor of dynamic float matrix
     // Matrix3f n;     n is constructor of 3x3 float matrix
 
 	 Matrix3f m(3,3);
@@ -249,7 +250,7 @@ int main(){
 	  MatrixXd b(5,3);	
 	  for (int i = 0; i<5; ++i){
 	  	for (int j = 0; j<3; ++j){
-	  			b(i,j) = 2.0;
+	  			b(i,j) = pow(-1, i)*2.0;
 	  	}
 	  }
 	  cout<<b<<endl;
@@ -272,11 +273,19 @@ int main(){
 	  //Vectors;
 	  //typedef Matrix<float, dynamic, 1> VectorXf
 	  //Vector.shape = (N, 1)
-	  
-	  typedef Matrix <float, 2,1> myvec;
+
+	  typedef Matrix <float, 10,1> myvec;
 	  myvec t;
-	  t(0,0) =1; t(1,0) = 2;
+
+	  //Comma initialization syntax
+	  t<<1,2,3,4,5,6,7,8,9,10;
 	  cout<<t<<endl;
+
+	  //transpose, conjugate and adjoint  of a vector/matrix
+	  cout<<t.transpose()<<endl;
+	  cout<<t.conjugate()<<endl;
+	  cout<<b.adjoint()<<endl;
+
 
 	return 0;
 }
