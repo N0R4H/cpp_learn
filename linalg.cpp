@@ -189,6 +189,7 @@ static void covariance(std::vector<std::vector<float>> v){
 
 
 int main(){
+	srand(time(0));	//set seed for pseudorandom nos.
 
 	std::vector<std::vector<float>> A = {{2.0, 5.0, 3.0}, 
 										{1.0, -2.0, -1.0}, 
@@ -204,8 +205,28 @@ int main(){
 	covariance(B);
 	//using eigen package instead of reinventing the wheel
 
+	//EIGEN
 
-	  Matrix3d m(3,3);
+	//explicit type declaration matrix
+	//Matrix<typename_scalar, 
+	//		int RowsAtCompileTime, 
+	//		int ColsAtCompileTime, 
+	// 		int Options = 0,
+    //		int MaxRowsAtCompileTime = RowsAtCompileTime,
+    //		int MaxColsAtCompileTime = ColsAtCompileTime>
+
+	
+    Matrix <float, 2,2> identity;
+    identity(0,0) = 1; identity(0,1) = 0;
+    identity(1,0)= 0;  identity(1,1) = 1;
+    cout<<"2X2 identity matrix is, "<<identity<<endl;
+
+    //constructor matrix
+    // typedef Matrix<float, Dynamic, Dynamic> MatrixXf   (MatrixXF is of type Matrix, float, dynamic, dynamic)
+    // MatrixXf m;      m is constructor of dynamic float matrix
+    // Matrix3f n;     n is constructor of 3x3 float matrix
+
+	 Matrix3f m(3,3);
 
 	  for (int i = 0; i<3; ++i){
 	  	for (int j = 0; j<3; ++j){
@@ -213,7 +234,7 @@ int main(){
 	  	}
 	  }
 	  
-	  Matrix3d a(3,3);
+	  Matrix3f a(3,3);
 
 	  for (int i = 0; i<3; ++i){
 	  	for (int j = 0; j<3; ++j){
@@ -223,6 +244,7 @@ int main(){
 	  cout<<a+m<<endl;	//matrix addition
 
 	  cout<<a*m<<endl; //matrix multiplication (dot)
+
 
 	  MatrixXd b(5,3);	
 	  for (int i = 0; i<5; ++i){
@@ -238,8 +260,20 @@ int main(){
 	  			d(i,j) = 4.0;
 	  	}
 	  }
-	  cout<<d<<endl;
-	  cout<<b*d<<endl;
+	  cout<<d<<endl;      
+	  cout<<b*d<<endl;  //5x3 dot 3x2 == 5x2
+
+	  cout<<"-------------"<<endl;
+	  cout<<b<<endl;            //5x3
+	  b.resize(3, 5);           //reshape to 3x5
+	  cout<<"-------------"<<endl;
+	  cout<<b<<endl;            //3x5
+
+      //Vectors
+      //typedef Matrix<f, Dynamic, 1>VectorXf
+
+      VectorXd q(3,1);
+      q = {{1,2,3}};
 
 	return 0;
 }
