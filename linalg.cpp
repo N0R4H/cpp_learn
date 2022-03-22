@@ -269,11 +269,6 @@ int main(){
 	  cout<<"-------------"<<endl;
 	  cout<<b<<endl;            //3x5
 
-      //Vectors
-      //typedef Matrix<f, Dynamic, 1>VectorXf
-
-      VectorXd q(3,1);
-      q = {{1,2,3}};
 
 	return 0;
 }
