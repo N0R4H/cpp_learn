@@ -282,9 +282,23 @@ int main(){
 	  cout<<t<<endl;
 
 	  //transpose, conjugate and adjoint  of a vector/matrix
-	  cout<<t.transpose()<<endl;
-	  cout<<t.conjugate()<<endl;
-	  cout<<b.adjoint()<<endl;
+
+	
+	  Matrix<float, 4, 4> mymat;
+	  mymat<< 3,-0, 5, -8, 6,1,2, -7, 6, 0, -6, -6, 2, 4, 5, 6;
+	  //only applicable for NXN matrices
+	  cout<<"mymat is "<<mymat<<endl;
+	  cout<<"-----------------"<<endl; 
+
+	  cout<<"transpose of mymat is "<<mymat.transpose()<<endl;
+
+	  cout<<"-----------------"<<endl; 
+	  cout<<"conjugate of mymat is "<<mymat.conjugate()<<endl;
+
+	  cout<<"-----------------"<<endl; 
+	  cout<<"adjoint mymat is "<<mymat.adjoint()<<endl;
+
+	  cout<<mymat<<endl;
 
 
 	return 0;
