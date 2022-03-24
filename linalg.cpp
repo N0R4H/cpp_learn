@@ -184,6 +184,7 @@ static void covariance(std::vector<std::vector<float>> v){
 		cout<<endl;
 		
 	}
+    
 
 }
 

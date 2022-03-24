@@ -165,7 +165,7 @@ public:
 };
 
 class circle: public geom{
-    cout<<"this circle"<<endl;
+    
     public:
       void show(){
         cout<<"radius is, "<<radius<<endl;
@@ -191,9 +191,47 @@ public:
 };
 
 
+class Overload{
+
+public:
+  int cnt = 4;
+
+void operator++ (){ //Note symbols are used as prefix
+  cout<<"Used ++ as prefix"<<endl;
+  ++cnt;
+}
+
+void operator++ (int){
+  cout<<"Used ++ as suffix"<<endl;
+  cnt++;
+}
+
+Overload &operator+(int a){
+  
+  this->cnt = this->cnt+a; //"this" points to current member 
+  return *this;
+}
+
+};
+
+int* ptrs(){
+  int p;
+  p = 23;
+  cout<<p<<", "<<&p<<endl;
+
+  int* a;
+  a = &p;
+  cout<<*a<<", "<<a<<endl;
+  return a;
+  
+}
+
+
 int main(){
 
-  
+  int *pr;
+  pr = ptrs();
+  cout<<*pr<<endl;
 
 
   ABC obj1;                                 //creating object (obj1) of type class ABC
@@ -202,7 +240,8 @@ int main(){
   
 
   //=============================OVERLOADING==========================================
-  // OVERLOADING is a feature of OOP by which we can create one or more objects/functions.
+  // OVERLOADING means something which has many meanings or implemented in different ways
+  //OVERLOADING is a feature of OOP by which we can create one or more objects/functions.
   // C++ tries to find the EXACT function/constructor name with EXACT parameter types
   // Hence we can have 2 different constructors/functions with same name but different parameter types
 
@@ -228,6 +267,25 @@ int main(){
   ABC obj4(obj3);     //shallow copy of obj3 contents to obj4 
 
   cout<<obj4.number<<"and"<<obj3.number<<endl;
+
+  //Operator overloading
+  //An operator which can do different tasks is overloaded
+  //Overloaded operators are functions with special names: 
+  //the keyword "operator" followed by the symbol for the operator being defined.
+  //datatype operator {symbol} (args)
+
+  Overload o;
+  cout<<o.cnt<<endl;
+  ++o;
+  cout<<o.cnt<<endl;
+  o++;
+  cout<<o.cnt<<endl;
+  Overload* h;
+
+  h = &(o+5); //adding cnt member of o with 5 and storing it as cnt
+
+  cout<<(*h).cnt<<endl;
+  
 
   //===================================================================================
 
@@ -295,5 +353,5 @@ int main(){
   c.showsecret();
 
   
-
+  
 }
