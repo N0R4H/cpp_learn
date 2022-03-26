@@ -206,10 +206,10 @@ void operator++ (int){
   cnt++;
 }
 
-Overload &operator+(int a){
+Overload *operator+(int a){
   
   this->cnt = this->cnt+a; //"this" points to current member 
-  return *this;
+  return this;
 }
 
 };
@@ -282,9 +282,9 @@ int main(){
   cout<<o.cnt<<endl;
   Overload* h;
 
-  h = &(o+5); //adding cnt member of o with 5 and storing it as cnt
-
-  cout<<(*h).cnt<<endl;
+  h = o+43; //adding cnt member of o with 5 and storing it as cnt
+  cout<<(*h).cnt<<h<<endl;
+  cout<<o.cnt<<endl;
   
 
   //===================================================================================
