@@ -241,4 +241,6 @@ int main(){
 	}
 
 	//usually if pointer if pointing to address 0, it is refered as a null pointer
+	
+
 }
