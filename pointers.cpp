@@ -158,6 +158,23 @@ int main(){
 	cout<<endl<<endl;
 	//always  remember to pair new with delete
 
+	//Dynamic array of pointers
+	int**abc;
+	abc = new int* [5];
+
+
+	for (int i = 0; i< 5; ++i){
+		*(abc+i) = new int ;		//allocating for each pointer
+		*(*(abc+i)) = i;
+	}
+
+	for (unsigned i = 0; i< 5; ++i){
+		cout<<*(*(abc+i))<<"lies in address "<<*(abc+i)<<endl;
+	}
+	
+	delete[] abc;
+	
+
 	cout<<"MALLOC AND FREE"<<endl;
 	//MALLOC AND FREE functions
 	//stands for Memory allocation
@@ -257,5 +274,5 @@ int main(){
 
 	//usually if pointer if pointing to address 0, it is refered as a null pointer
 
-
+	
 }
