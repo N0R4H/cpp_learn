@@ -24,6 +24,7 @@ int main(){
 
 	cout<<*(&b+1)<<endl; // same as *(p+1)
 
+
 	int arr[5] = {1,2,3,4,5}; //can assume an array as pointers in sequence
 
 	cout<<"first element is "<<arr[0]<<" and its address is "<<arr<<endl; //array name is a pointer pointing to address of first element
@@ -100,4 +101,144 @@ int main(){
 		cout<<*(o-2+i)<<" <---> "<<arr3[i]<<endl;
 	}
 
+	//MEMORY MANAGMENT
+	//With help of pointers we can manually play around with the memory addresses
+	//of variables, however that isn't all, we can also assign new or delete dynamic memory
+	//to pointers of certain types.
+
+	//new operator (allocates heap memory)
+	//delete operator	(frees heap memory)
+
+
+	//remember in the aforementioned activities, 
+	//the pointers are pointing to stack memory not heap
+	//therefore DO NOT DELETE them
+	//eg:- 
+	//int *ptr2;	//declaring pointer
+	//*ptr2 = 23;	//pointing it to stack memory
+	//delete ptr2 	//ERROR segmentation fault, core dumped kaboom!
+	//instead:-
+
+	int *ptr1;
+	ptr1 = new int;	//allocated 8 bytes (64bit system) 
+
+	*ptr1 = 10;  	// dynamically allocated
+	cout<<*ptr1<<ptr1<<endl;
+	delete ptr1;	//deleting memory
+
+	cout<<*ptr1<<ptr1<<endl;//value is null, but pointer is still pointing to heap
+
+	int *ptr2;
+	ptr2 = new int[10];		//allocating heap array
+
+	for (unsigned i = 0; i < 10; ++i){
+		*(ptr2 + i) = i;
+	}
+	for (unsigned i = 0; i < 10; ++i){
+		cout<<*(ptr2+i)<<"lies in address"<<ptr2+i<<endl;
+		//each address excedes the previous one by 4 (int byte = 4)
+	}
+	
+	delete[] ptr2;	//deallocate complete heap array
+	cout<<endl<<endl;
+	//always  remember to pair new with delete
+
+	cout<<"MALLOC AND FREE"<<endl;
+	//MALLOC AND FREE functions
+	//stands for Memory allocation
+	//MALLOC -> allocates a BLOCK of memory
+	
+
+	//Allocates a chunk of memory, hence requires ONE argument
+	//the values are unintialized
+
+	int *mallptr;
+	//malloc(N x sizeof(datatype)) returns  a void* which needs to be type casted using (datatype* )
+	mallptr = (int* )malloc(3*sizeof(int)); //mallocs dynamic array of integers with size 3
+
+	//if allocation is not possible, it will return a nullptr
+	for (unsigned i = 0; i < 3; ++i ){
+		*(mallptr+i) = i;
+	}
+
+	for (unsigned i = 0; i < 3; ++i ){
+		cout<<*(mallptr+i)<<"lies in address "<<(mallptr+i)<<endl;
+	}
+
+	//free memory
+	free(mallptr);
+	cout<<endl<<endl;
+
+	cout<<"CALLOC AND FREE"<<endl;
+	//CALLOC and FREE Functions
+	//stands for contiguous allocation
+	//CALLOC -> allocates contiguous memory
+
+	//Unlike malloc, calloc provides a DISCIPLINED form memory
+	//All elements are intialized to 0
+	//Requires 2 arguments
+
+	float* callptr;
+	callptr = (float* )calloc(10, sizeof(float));
+	for (unsigned i = 0; i < 10; ++i ){
+		cout<<*(callptr+i)<<", ";
+	}
+	cout<<endl;
+	for (unsigned i = 0; i < 10; ++i ){
+		*(callptr+i) = i; 
+	}
+	for (unsigned i = 0; i < 10; ++i ){
+		cout<<*(callptr+i)<<" lies in address "<<callptr+i<<endl;
+	}
+	cout<<endl;
+	//free memory
+	free(callptr);
+	
+	//After freeing the pointer will STILL point at the address regardless of value occupancy
+
+	cout<<"REALLOC AND FREE"<<endl;
+	//REALLOC and free
+	//stands for real allocation
+	//REALLOC -> for dynamic sizing
+
+	//changes pointer size which has been allocated either using malloc or calloc
+	//requires 2 arguments
+	mallptr  = (int* )realloc(mallptr, 6*sizeof(int)); // changing from 3 to 4
+
+
+	for (unsigned i = 0; i < 6; ++i ){
+		*(mallptr+i) = i;
+	}
+
+	for (unsigned i = 0; i < 6; ++i ){
+		cout<<*(mallptr+i)<<"lies in address "<<(mallptr+i)<<endl;
+	}
+
+
+	free(mallptr);
+
+	callptr = (float* )calloc(10, sizeof(float)); //changing from 10 to 3
+
+	for (unsigned i = 0; i < 10; ++i ){
+		cout<<*(callptr+i)<<", ";
+	}
+	cout<<endl;
+	for (unsigned i = 0; i < 10; ++i ){
+		*(callptr+i) = i; 
+	}
+	for (unsigned i = 0; i < 10; ++i ){
+		cout<<*(callptr+i)<<" lies in address "<<callptr+i<<endl;
+	}
+	cout<<endl;
+	//free memory
+	free(callptr);
+
+	cout<<"Address of callptr is "<<callptr<<endl;
+	callptr = NULL;
+
+	if(!callptr){
+		cout<<"null pointer, address is "<<callptr<<endl;
+	}
+
+	//usually if pointer if pointing to address 0, it is refered as a null pointer
 }
