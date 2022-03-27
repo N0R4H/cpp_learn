@@ -24,6 +24,21 @@ int main(){
 
 	cout<<*(&b+1)<<endl; // same as *(p+1)
 
+	//cascadeing pointers
+	
+	int *p1;		//p1 is a pointer, which will point at an address of a int value
+	int **p2;		//p2 is a pointer which points at an address of an address of a int value
+	int ***p3;      //p3 is ''''' address of address of address of int value
+	//int ***...pn  // pn is ''' address of address of ........ of int value
+	//meaning that you will have to dereference pn 'n' times to get the value!
+	
+	p1 = &b;		//p1 points at address of b
+	p2 = &p1;		//p2 points at address of address of b
+	p3 = &p2;		// p3 '''' address of address of address of b
+	//pn = &pn-1    //pn ''''
+
+	cout<<*p1<<" same as "<<**p2<<endl;	//same as *****...pn
+
 
 	int arr[5] = {1,2,3,4,5}; //can assume an array as pointers in sequence
 
@@ -241,6 +256,6 @@ int main(){
 	}
 
 	//usually if pointer if pointing to address 0, it is refered as a null pointer
-	
+
 
 }
