@@ -196,12 +196,12 @@ class Overload{
 public:
   int cnt = 4;
 
-void operator++ (){ //Note symbols are used as prefix
+void operator++ (){ //prefix increment
   cout<<"Used ++ as prefix"<<endl;
   ++cnt;
 }
 
-void operator++ (int){
+void operator++ (int){ //suffix increment
   cout<<"Used ++ as suffix"<<endl;
   cnt++;
 }
