@@ -173,7 +173,32 @@ int main(){
 	}
 	
 	delete[] abc;
-	
+
+	//creating a dynamic array using new
+	cout<<"CREATING DYNAMIC MATRIX USING NEW DELETE"<<endl;
+
+	int** n;
+
+	n = new int*[3]; // gives address of address of first element of array
+
+	for (unsigned i = 0; i<3; ++i){
+		*(n+i) = new int[3];	//gives address of first element
+		for (unsigned j = 0; j<3; ++j){
+			*(*(n+i)+j) = i*j;
+		}
+	}
+	for (unsigned i = 0; i<3; ++i){
+		for (unsigned j = 0; j<3; ++j){
+			cout<<*(*(n+i)+j)<<", ";
+		}
+		cout<<endl;
+	}
+
+	for (unsigned i = 0; i<3; ++i){
+		delete[] *(n+i);
+	}
+	delete[] n;
+
 
 	cout<<"MALLOC AND FREE"<<endl;
 	//MALLOC AND FREE functions
@@ -273,7 +298,8 @@ int main(){
 	}
 	//usually if pointer if pointing to address 0, it is refered as a null pointer
 	
-	//Creating a matrix using dynamic arrays
+	//Creating a matrix using dynamic arrays using calloc
+
 	int** u;	//creating pointer pointing to address of address of int value
 	u = (int** )calloc(3, sizeof(int)); //giving u the address of address of int value
 
@@ -301,7 +327,7 @@ int main(){
 	//freeing the dynamic matrix
 
 	free(u);
-
 	//REMEMBER FOR EVERY MALLOC, CALLOC OR NEW THERE HAS TO BE A FREE OR A DELETE RESPECTIVELY
+
 
 }
