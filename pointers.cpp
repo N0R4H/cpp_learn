@@ -271,8 +271,37 @@ int main(){
 	if(!callptr){
 		cout<<"null pointer, address is "<<callptr<<endl;
 	}
-
 	//usually if pointer if pointing to address 0, it is refered as a null pointer
-
 	
+	//Creating a matrix using dynamic arrays
+	int** u;	//creating pointer pointing to address of address of int value
+	u = (int** )calloc(3, sizeof(int)); //giving u the address of address of int value
+
+	for(unsigned row = 0; row < 3; ++row){
+			*(u+row) = (int*)calloc(3, sizeof(int)); //giving *(u+i) the address of int value
+
+			for(unsigned col = 0; col< 3; ++col){
+					*(*(u+row)+col) = row*col;		//giving*(*(u+i)+j) the value 
+			}
+
+	}
+	for(unsigned row = 0; row < 3; ++row){
+			
+			for(unsigned col = 0; col< 3; ++col){
+					cout<<*(*(u+row)+col)<<", ";
+			}
+			cout<<endl;
+	}
+
+	//freeing every dynamic row
+	for(unsigned row = 0; row < 3; ++row){
+			free(*(u+row));
+
+	}
+	//freeing the dynamic matrix
+
+	free(u);
+
+	//REMEMBER FOR EVERY MALLOC, CALLOC OR NEW THERE HAS TO BE A FREE OR A DELETE RESPECTIVELY
+
 }
