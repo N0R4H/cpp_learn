@@ -2,8 +2,9 @@
 
 using namespace std;
 
-int main(){
-	
+
+void intro_2_pointers(){
+
 	int a = 5;   		// a is a variable with value 5 and an address
 	cout<<&a<<endl;		// & is used as a prefix for showing the address of the variable
 	cout<<*&a<<endl;	// * is used to dereference the address and show the value
@@ -38,8 +39,10 @@ int main(){
 	//pn = &pn-1    //pn ''''
 
 	cout<<*p1<<" same as "<<**p2<<endl;	//same as *****...pn
+	
+}
 
-
+void arrays_and_pointers(){
 	int arr[5] = {1,2,3,4,5}; //can assume an array as pointers in sequence
 
 	cout<<"first element is "<<arr[0]<<" and its address is "<<arr<<endl; //array name is a pointer pointing to address of first element
@@ -115,7 +118,9 @@ int main(){
 	for(unsigned i = 0; i < 10; ++i){
 		cout<<*(o-2+i)<<" <---> "<<arr3[i]<<endl;
 	}
+}
 
+void memory_management(){
 	//MEMORY MANAGMENT
 	//With help of pointers we can manually play around with the memory addresses
 	//of variables, however that isn't all, we can also assign new or delete dynamic memory
@@ -289,15 +294,9 @@ int main(){
 	cout<<endl;
 	//free memory
 	free(callptr);
+}
 
-	cout<<"Address of callptr is "<<callptr<<endl;
-	callptr = NULL;
-
-	if(!callptr){
-		cout<<"null pointer, address is "<<callptr<<endl;
-	}
-	//usually if pointer if pointing to address 0, it is refered as a null pointer
-	
+void dynamicmatrices(){
 	//Creating a matrix using dynamic arrays using calloc
 
 	int** u;	//creating pointer pointing to address of address of int value
@@ -329,5 +328,46 @@ int main(){
 	free(u);
 	//REMEMBER FOR EVERY MALLOC, CALLOC OR NEW THERE HAS TO BE A FREE OR A DELETE RESPECTIVELY
 
+
+}
+
+void null_pointer(){
+	//usually if pointer if pointing to address 0, it is refered as a null pointer
+	
+	
+	//Null pointer
+	//pointer pointing to nothing is a null pointer
+	//it is pointing to a 0 address location
+	int* m;
+	m = nullptr;
+	cout<<m<<endl;	//address 0, *m has no value 
+
+	//m = NULL;		//pointing to null address same as nullptr however above one is better
+	void* nb;
+	nb = (void* )0;	//type casting (int)0 -> void* which is basically nullpointer
+
+
+}
+
+
+
+
+int main(){
+	
+	intro_2_pointers();
+
+	arrays_and_pointers();
+	
+	memory_management();
+	
+	dynamicmatrices();
+	
+	null_pointer();
+	
+
+	//MEMCPY
+	//it copies bytes from source to destination
+
+	
 
 }
