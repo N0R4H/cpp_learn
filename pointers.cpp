@@ -350,7 +350,46 @@ void null_pointer(){
 }
 
 
+int add(int a, int b){return a+b;}
+int sub(int a, int b){return a-b;}
+int mul(int a, int b){return a*b;}
+int Div(int a, int b){return a/b;}
 
+void wrapper(int (**a)(int, int), int b, int c, int option){
+			cout<<(*(a + option))(b, c)<<endl;
+
+}
+
+
+void function_pointers(){
+	//These pointers point to functions or a code
+	int (*funcptr)(int, int); //if the brackets are removedlike this int* funcptr(int, int )
+							  //then it  means the funcptr accepts 2 int and RETURNS a 
+							  //pointer to address of integer which we dont want
+	//instead it type (*funcptr)(args) is a function pointer pointing 
+	//to function or block of code of a return type
+	funcptr = &add;	//remove & it still works
+	cout<<(*funcptr)(3,4)<<endl;	//remove * it still works
+
+	//we can also have an array of function pointers
+
+	//initializing an array which gives a pointer pointing to
+	// the address of the address of the function
+	int (*funcptr_arr [])(int, int)  = {add, sub, mul, Div};
+
+	for(size_t idx = 0; idx < sizeof(funcptr_arr)/sizeof(*funcptr_arr); ++idx){
+
+			cout<<(*(funcptr_arr + idx))(5,2)<<endl;
+	}
+
+	int (**ptr)(int, int) = funcptr_arr;
+
+	//we can also pass function pointers as arguments
+	//wrappers
+
+	wrapper(ptr, 24, 2, 3);
+
+}
 
 int main(){
 	
@@ -364,10 +403,11 @@ int main(){
 	
 	null_pointer();
 	
-
+	function_pointers();
+	
 	//MEMCPY
 	//it copies bytes from source to destination
 
-	
+	return 0;
 
 }
