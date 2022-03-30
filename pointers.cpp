@@ -1,5 +1,6 @@
 #include <iostream>
 
+
 using namespace std;
 
 
@@ -414,7 +415,98 @@ void function_pointers(){
 	//address of the address of a function in the array
 	wrapper(funcptr_arr, 24, 2, 3);
 
+
+
 }
+
+class A{
+
+
+public:
+	int a;
+	
+	void print(){
+		cout<<"a is "<<this->a<<endl; //this is an internal pointer which
+									  //which can points at the value of member
+	}
+};
+
+class B{
+
+private:
+	int age;
+	string name;
+
+
+public:
+	float weight = 75;
+	B(int i, string j){
+		cout<<"Constructor called"<<endl;
+		age = i;
+		name = j;
+	};
+
+	void showname(){
+		cout<<name<<endl;
+	}
+
+	void showage(){
+		cout<<age<<endl;
+	}
+
+	string* accessname(){
+		return &name;
+	}
+
+	int* accessage(){
+		return &age;
+	}
+
+
+	~B(){
+		cout<<"Destructor called"<<endl;
+	};
+
+};
+
+
+void class_pointers(){
+
+	A abc;
+	A* p;
+	p = &abc;
+
+	abc.a = 6;
+	abc.print();
+	cout<<"a is "<<p->a<<endl;;	//pointer points to value of member
+
+	p->a = p->a + 5;
+	abc.print();
+	cout<<"a is "<<p->a<<endl;
+
+	cout<<&(p->a)<<"same as "<<p<<endl; //all the members share the same address
+
+	
+	//Pointers to specfic members
+	B obj1(23, "Rohan");  //creating object of class, calling constructor
+	B* ptr = &obj1; 	//ptr pointing to class B
+
+	obj1.showname();
+	//cout<<ptr->name<<endl; //ERROR ptr has no rights to point at private member
+	int* a = obj1.accessage();
+	string* n = obj1.accessname();
+
+	cout<<*a<<endl; //age
+	cout<<*n<<endl;	//name
+
+	cout<<"weight is "<<obj1.weight<<endl; //using object to show member
+	cout<<"weight is "<<ptr->weight<<endl; //using pointer to point at value of member
+
+	
+
+}
+
+
 
 int main(){
 	
@@ -429,6 +521,8 @@ int main(){
 	null_pointer();
 	
 	function_pointers();
+	
+	class_pointers();
 
 	//MEMCPY TBD
 	//it copies bytes from source to destination
