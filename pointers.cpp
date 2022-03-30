@@ -53,6 +53,12 @@ void arrays_and_pointers(){
 	//then &array will point at the complete array
 	//therefore array == *&array == &array[0]
 
+	//now address of the first element is same as the whole array
+	//However, if both addresses are shifted by 1, they get shifted 
+	//differently
+
+	//&arr + 1 == arr + N; where N is the length of the arr
+
 	cout<<"length of array is "<<*(&arr + 1)-arr<<endl;
 
 	//in the above line, &arr  points at the whole array,
@@ -118,6 +124,11 @@ void arrays_and_pointers(){
 	for(unsigned i = 0; i < 10; ++i){
 		cout<<*(o-2+i)<<" <---> "<<arr3[i]<<endl;
 	}
+	//
+
+
+
+
 }
 
 void memory_management(){
@@ -360,6 +371,16 @@ void wrapper(int (**a)(int, int), int b, int c, int option){
 
 }
 
+void func(){
+
+	cout<<"done"<<endl;
+}
+
+void wrapper(void (*funcptr)()){
+	cout<<"Inside wrapper"<<endl;
+		(*funcptr)();		// considerinf func == &func, *func will point to the function
+}
+
 
 void function_pointers(){
 	//These pointers point to functions or a code
@@ -382,12 +403,16 @@ void function_pointers(){
 			cout<<(*(funcptr_arr + idx))(5,2)<<endl;
 	}
 
-	int (**ptr)(int, int) = funcptr_arr;
+	//int (**ptr)(int, int) = funcptr_arr;
 
 	//we can also pass function pointers as arguments
 	//wrappers
+	void (*fn)() = &func;
+	wrapper(fn);
 
-	wrapper(ptr, 24, 2, 3);
+	//we can also pass a pointer pointing to the
+	//address of the address of a function in the array
+	wrapper(funcptr_arr, 24, 2, 3);
 
 }
 
@@ -404,8 +429,8 @@ int main(){
 	null_pointer();
 	
 	function_pointers();
-	
-	//MEMCPY
+
+	//MEMCPY TBD
 	//it copies bytes from source to destination
 
 	return 0;
