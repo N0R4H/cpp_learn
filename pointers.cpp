@@ -423,7 +423,7 @@ class A{
 
 
 public:
-	int a;
+	int a=3;
 	
 	void print(){
 		cout<<"a is "<<this->a<<endl; //this is an internal pointer which
@@ -440,6 +440,7 @@ private:
 
 public:
 	float weight = 75;
+
 	B(int i, string j){
 		cout<<"Constructor called"<<endl;
 		age = i;
@@ -447,12 +448,15 @@ public:
 	};
 
 	void showname(){
-		cout<<name<<endl;
+		cout<<this->name<<endl;
+		//cout<<name<<endl;
 	}
 
 	void showage(){
 		cout<<age<<endl;
+		//cout<<this->age<<endl;
 	}
+
 
 	string* accessname(){
 		return &name;
@@ -461,10 +465,24 @@ public:
 	int* accessage(){
 		return &age;
 	}
+	void showweight(){
+		cout<<weight<<endl;
+	}
 
 
 	~B(){
 		cout<<"Destructor called"<<endl;
+	};
+
+};
+
+class C{
+private:
+	int h;
+
+public:
+	int show(){
+		return h;
 	};
 
 };
@@ -503,9 +521,41 @@ void class_pointers(){
 	cout<<"weight is "<<ptr->weight<<endl; //using pointer to point at value of member
 
 	
+	//Pointer to specfic member variable of class
 
+	float B::*l = &B::weight; //
+	//cout<<obj1::accessage()<<endl;
+	cout<<obj1.*l<<endl;	//equivalent to obj1.weight; *l == weight roughly
+
+	ptr->*l = ptr->*l + 1;	//using a pointer pointing to address of object,
+							//to access the member 
+
+	cout<<obj1.*l<<endl;	//changed
+
+	//Pointer to specific member function of class
+
+	void (B::*s)() = &B::showname;	//s is a pointer pointing at
+									//showname
+
+	(ptr->*s)();					//*s is showname; and ptr to class points 
+									//at the member function, and () is used to call
+
+
+	//array of class pointers
+	B candidate1(21, "Ymir");
+	B candidate2(23, "Eren");
+	B* e1 = &candidate1;
+	B* e2 = &candidate2;
+
+
+	B* arr[] = {e1, e2};
+
+	cout<<*((*arr)->accessname())<< " and " << *((*(arr+1))->accessname())<< " are "<<
+		*((*arr)->accessage()) << " and "<< 
+	      *((*(arr+1))->accessage())<<" respectively"<<endl;
+
+	
 }
-
 
 
 int main(){
@@ -523,6 +573,7 @@ int main(){
 	function_pointers();
 	
 	class_pointers();
+
 
 	//MEMCPY TBD
 	//it copies bytes from source to destination
