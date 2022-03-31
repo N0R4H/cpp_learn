@@ -428,7 +428,8 @@ public:
 	void print(){
 		cout<<"a is "<<this->a<<endl; //this is an internal pointer which
 									  //which can points at the value of member
-	}
+	}								 //this-> same as *(this)
+									 //-> means pointing at VALUE of the member same as *
 };
 
 class B{
@@ -554,7 +555,69 @@ void class_pointers(){
 		*((*arr)->accessage()) << " and "<< 
 	      *((*(arr+1))->accessage())<<" respectively"<<endl;
 
+
 	
+}
+
+//int struct MYSTRUCT:: strucfunc();
+int showage(struct MYSTRUCT* p);
+
+//typedef keyword allows a variable to be defined as that type;
+//for eg: typedef int myint; myint is now the same as int
+typedef struct MYSTRUCT{
+
+	int age;
+	const char* name;
+
+	int strucfunc(){
+		return this->age;
+};
+
+
+}normal, *pointer, array[5]; //remember, it is prudent that compiler knows array size 
+							 //during compile time
+
+
+
+int showage(struct MYSTRUCT* ptr){
+	return ptr->age;
+}
+
+
+
+
+void struct_pointers(){
+	normal obj; //this creates an obj of type struct MYSTRUCT
+	pointer ptr; //creates pointer of type strucr MYSTRUCT
+	array arr; //creates an array of 5 objects of type struct MYSTRUCT
+
+	obj.age = 21;
+	obj.name = "Rohan";
+	cout<<*(obj.name)<<endl;
+
+	ptr = &obj; //as pointer is of type struct MYSTRUCT
+				//which means it can only point at address of 
+				//objects of type struct MYSTRUCT!
+
+	cout<<ptr->age<<" same as "<<(*ptr).age<<endl;
+	cout<<ptr->name<<" same as "<<(*ptr).name<<endl;
+
+	obj.age = 12;
+
+	//passing a pointer as an argument
+	cout<<showage(ptr)<<endl;
+
+	//pointer pointing to function
+	int (*funcptr)(pointer);
+
+	funcptr = &showage;
+	cout<<(*funcptr)(ptr)<<endl;
+
+	//pointer pointing at a specific struct member
+	int normal::*p = &normal::age;	//p is pointing at address of member
+	cout<<obj.*p<<" same as "<<ptr->*p<<endl;	
+	cout<<obj.strucfunc()<<" same as "<<ptr->strucfunc()<<endl;
+
 }
 
 
@@ -574,9 +637,7 @@ int main(){
 	
 	class_pointers();
 
-
-	//MEMCPY TBD
-	//it copies bytes from source to destination
+	struct_pointers();
 
 	return 0;
 
