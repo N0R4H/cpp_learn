@@ -480,14 +480,15 @@ public:
 class C{
 private:
 	int h;
-
 public:
-	int show(){
-		return h;
-	};
+	int show();
 
 };
 
+
+int C::show(){
+		return h;
+	};
 
 void class_pointers(){
 
@@ -568,16 +569,15 @@ typedef struct MYSTRUCT{
 
 	int age;
 	const char* name;
-
-	int strucfunc(){
-		return this->age;
-};
+	const char* strucfunc();
 
 
 }normal, *pointer, array[5]; //remember, it is prudent that compiler knows array size 
 							 //during compile time
 
-
+const char* MYSTRUCT::strucfunc(){
+	return this->name;;
+}
 
 int showage(struct MYSTRUCT* ptr){
 	return ptr->age;
@@ -618,24 +618,29 @@ void struct_pointers(){
 	cout<<obj.*p<<" same as "<<ptr->*p<<endl;	
 	cout<<obj.strucfunc()<<" same as "<<ptr->strucfunc()<<endl;
 
+	const char* (normal::*x)() = &normal::strucfunc; //x is pointer pointing 
+													 // to address of member function
+	
+	cout<<(ptr->*x)()<< " same as " << (obj.*x)()<<endl;;
+	
 }
 
 
 int main(){
 	
-	intro_2_pointers();
+	// intro_2_pointers();
 
-	arrays_and_pointers();
+	// arrays_and_pointers();
 	
-	memory_management();
+	// memory_management();
 	
-	dynamicmatrices();
+	// dynamicmatrices();
 	
-	null_pointer();
+	// null_pointer();
 	
-	function_pointers();
+	// function_pointers();
 	
-	class_pointers();
+	//class_pointers();
 
 	struct_pointers();
 
