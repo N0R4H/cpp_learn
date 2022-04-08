@@ -647,7 +647,7 @@ void union_pointers(){
 		
 		p = &o1;
 		o1.age = 23;
-		o1.name = "Rohanasdasd";
+		o1.name = "Rohan";
 
 		//cout<<p->age<<endl;	// In unions all members share same address,
 							// so the last change to any member
@@ -656,25 +656,30 @@ void union_pointers(){
 
 		typedef const char* (myunion :: *ol);
 
-		myunion*** arr;
+		myunion* arr[3][3];
 
-		for (int i = 0; i < 3; ++i){
-			*(arr+i) = new myunion* [3];
-			for(int j = 0; j< 3; ++j){
-				*(*(arr+i)+j) = &o1;
+		for (int i =0; i<3; ++i){
+			for (int j = 0 ; j<3; ++j){
+				arr[i][j] = &o1;
 			}
 		}
-		p->age = 10;
 
-		for (int i = 0; i < 3; ++i){
-			for(int j = 0; j< 3; ++j){
-				cout<<(*(*(arr+i)+j))->age<<", ";
+		o1.age = 21;
+		for (int i =0; i<3; ++i){
+			for (int j = 0 ; j<3; ++j){
+				cout<<(arr[i][j])->age<<", ";
+				
 			}
 			cout<<endl;
 		}
 
-		for (int i = 0; i< 3; ++i){
-			delete *(arr+i);
+		o1.name = "ROHAN";
+
+		for (int i =0; i<3; ++i){
+			for (int j = 0 ; j<3; ++j){
+				cout<<(arr[i][j])->name<<", ";
+			}
+			cout<<endl;
 		}
 
 
