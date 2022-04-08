@@ -539,9 +539,9 @@ void class_pointers(){
 	void (B::*s)() = &B::showname;	//s is a pointer pointing at
 									//showname
 
-	(ptr->*s)();					//*s is showname; and ptr to class points 
+	(ptr->*s)(); cout<<" same as "; (obj1.*s)();//*s is showname; and ptr to class points 
 									//at the member function, and () is used to call
-
+	
 
 	//array of class pointers
 	B candidate1(21, "Ymir");
@@ -560,6 +560,8 @@ void class_pointers(){
 	
 }
 
+
+
 //int struct MYSTRUCT:: strucfunc();
 int showage(struct MYSTRUCT* p);
 
@@ -572,7 +574,7 @@ typedef struct MYSTRUCT{
 	const char* strucfunc();
 
 
-}normal, *pointer, array[5]; //remember, it is prudent that compiler knows array size 
+}normal, *pointer, *array[5]; //remember, it is prudent that compiler knows array size 
 							 //during compile time
 
 const char* MYSTRUCT::strucfunc(){
@@ -587,7 +589,7 @@ int showage(struct MYSTRUCT* ptr){
 
 
 void struct_pointers(){
-	normal obj; //this creates an obj of type struct MYSTRUCT
+	normal obj, obj2; //this creates an obj of type struct MYSTRUCT
 	pointer ptr; //creates pointer of type strucr MYSTRUCT
 	array arr; //creates an array of 5 objects of type struct MYSTRUCT
 
@@ -622,8 +624,63 @@ void struct_pointers(){
 													 // to address of member function
 	
 	cout<<(ptr->*x)()<< " same as " << (obj.*x)()<<endl;;
-	
+
+
+
+	//ptr->*x == obj.*x; 
 }
+
+typedef union MYUNION{
+	int age;
+	const char* name;
+	const char* myname();
+	void a();
+
+
+}myunion, *myptr, uniarray[10];
+
+
+void union_pointers(){
+
+		myptr p;
+		myunion o1,o2,o3,o4;
+		
+		p = &o1;
+		o1.age = 23;
+		o1.name = "Rohanasdasd";
+
+		//cout<<p->age<<endl;	// In unions all members share same address,
+							// so the last change to any member
+							// will be the only member which has some valid value
+		cout<<p->name<<endl; // Therefore this will work
+
+		typedef const char* (myunion :: *ol);
+
+		myunion*** arr;
+
+		for (int i = 0; i < 3; ++i){
+			*(arr+i) = new myunion* [3];
+			for(int j = 0; j< 3; ++j){
+				*(*(arr+i)+j) = &o1;
+			}
+		}
+		p->age = 10;
+
+		for (int i = 0; i < 3; ++i){
+			for(int j = 0; j< 3; ++j){
+				cout<<(*(*(arr+i)+j))->age<<", ";
+			}
+			cout<<endl;
+		}
+
+		for (int i = 0; i< 3; ++i){
+			delete *(arr+i);
+		}
+
+
+}
+
+
 
 
 int main(){
@@ -642,7 +699,10 @@ int main(){
 	
 	//class_pointers();
 
-	struct_pointers();
+	//struct_pointers();
+
+	//union_pointers();
+
 
 	return 0;
 
