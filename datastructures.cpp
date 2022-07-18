@@ -115,6 +115,9 @@ int arrays()
             cout<<arr[i]<<", ";
 
           }
+          for(auto k: arr){
+            cout<<k<<endl;
+          }
           cout<<arr[len]<<"}";
           cout<<endl;
           cout<<*(&arr+1)-arr;
@@ -257,6 +260,8 @@ int main(){
     // dicts();
     // string a = "Hello World!";
     //cout<<max({6})<<endl;
+    cout<<bin(1231)<<endl;
     return 0;
+
 }
 

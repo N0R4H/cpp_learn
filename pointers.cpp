@@ -685,8 +685,49 @@ void union_pointers(){
 
 }
 
+void change(int* p){
+	*p+=*p*3;
+}
 
 
+//Pointers in DerivedBaseClasses
+
+void DerivedBaseClasses(){
+
+
+	class Base{
+
+	public:
+		int baseint = 10;
+		int sec = 23;
+		void Dis(){
+			cout<<this->baseint+2;
+		};
+	};
+
+	class Derived:public Base{
+
+	public:
+		int o = 11;
+
+	};
+
+	Base* bptr = new Base;
+	Derived* dptr = new Derived;
+	
+	void (Base::*fptr)() = &Base::Dis;
+
+	(bptr->*fptr)();
+	
+	dptr = new Derived;
+
+	cout <<dptr->baseint;
+	cout<<bptr->dptr->baseint;
+	
+	delete bptr;
+
+	delete dptr;
+}
 
 int main(){
 	
@@ -708,7 +749,11 @@ int main(){
 
 	//union_pointers();
 
+	//int a = 23;
+	//change(&a);
+	//cout<<a<<endl;
 
+	DerivedBaseClasses();
 	return 0;
 
 }
