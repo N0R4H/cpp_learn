@@ -490,6 +490,34 @@ int C::show(){
 		return h;
 	};
 
+class X{
+
+	X();
+	//~X();
+	int xint = 17;
+	static X* xptr;
+public:
+
+	static X* GetInstance();
+	bool xbool = true;
+	int access();
+};
+int X::access(){
+	return this->xint;
+}
+
+X* X::xptr = NULL; // defining a nullptr
+
+X::X(){}; //defining the private constructor
+//X::~X(){}; //defining a private destructor
+/****SINGLETONMETHOD******/
+X* X::GetInstance(){
+     if (xptr == NULL){
+     	xptr = new X(); //dynamically allocate a heap memory to xptr
+     }
+     return xptr;
+}
+
 void class_pointers(){
 
 	A abc;
@@ -556,6 +584,14 @@ void class_pointers(){
 		*((*arr)->accessage()) << " and "<< 
 	      *((*(arr+1))->accessage())<<" respectively"<<endl;
 
+
+
+	//**************Static, Extern and Dynamic Pointers*************************************//
+
+	X* xtr = X::GetInstance();
+	cout<<xtr->access();
+
+	delete xtr; 
 
 	
 }
@@ -719,10 +755,9 @@ void DerivedBaseClasses(){
 
 	(bptr->*fptr)();
 	
-	dptr = new Derived;
 
-	cout <<dptr->baseint;
-	cout<<bptr->dptr->baseint;
+	//out <<dptr->baseint;
+	//cout<<bptr->dptr->baseint;
 	
 	delete bptr;
 
