@@ -226,9 +226,49 @@ int* ptrs(){
   
 }
 
+//SINGLETON class prevents more than one instantance of a class.
+//This is mainly used, so that one can work on only one instance, rather than creating many.
+//On top of that, tracking multiple instances, or destroying them for that 
+//matter becomes tedious. Handling multiple instances of a class, could prove
+//to be detrimental, since improper handling could result to memory leaks and
+//crashes.
+
+class SINGLETON{
+
+private:
+SINGLETON(); //CONSTRUCTOR Declaration
+~SINGLETON(); //DESTRUCTOR Declaration
+public:
+  static SINGLETON* GetInstance();
+  void DeleteInstance();
+
+};
+
+SINGLETON::~SINGLETON(){
+  cout << "INSTANCE DELETED";
+}
+
+SINGLETON::SINGLETON(){
+  cout << "INSTANCE CREATED";
+}
+
+static SINGLETON* singptr = NULL; //global static ptr which can be accessed throughout the program
+
+SINGLETON* SINGLETON::GetInstance(){
+  if (singptr == NULL)
+        singptr = new SINGLETON();
+  return singptr;
+}
+
+void SINGLETON::DeleteInstance(){
+  if (singptr!=NULL)
+        delete singptr;   //this will invoke the destructor
+}
+
 
 int main(){
 
+#if 0
   int *pr;
   pr = ptrs();
   cout<<*pr<<endl;
@@ -351,6 +391,9 @@ int main(){
   c.settria(1,2,3);
   c.show();
   c.showsecret();
+#endif
+  SINGLETON* sptr = SINGLETON::GetInstance();
+  sptr->DeleteInstance();
 
   
 }
