@@ -236,8 +236,11 @@ int* ptrs(){
 class SINGLETON{
 
 private:
+
 SINGLETON(); //CONSTRUCTOR Declaration
 ~SINGLETON(); //DESTRUCTOR Declaration
+
+
 public:
   static SINGLETON* GetInstance();
   void DeleteInstance();
@@ -264,6 +267,9 @@ void SINGLETON::DeleteInstance(){
   if (singptr!=NULL)
         delete singptr;   //this will invoke the destructor
 }
+
+
+
 
 
 int main(){
@@ -394,6 +400,8 @@ int main(){
 #endif
   SINGLETON* sptr = SINGLETON::GetInstance();
   sptr->DeleteInstance();
+
+
 
   
 }
