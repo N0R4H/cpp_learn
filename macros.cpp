@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 /**
@@ -10,6 +11,9 @@ using namespace std;
 #define sub(x,y) x-y
 #define div(x,y) x/y
 
+#ifndef magic
+#define magic !_?"0b": bin(_>>1) + (_&1?'1':'0')
+#endif
 
 /*
 *INLINE FUNCTION CUTS DOWN ANY LINKER OVERHEAD, AS IF 
@@ -18,11 +22,11 @@ using namespace std;
 *THE RECURSIVE ONES. HOWVER THEY ARE INLINED ONLY TO A CERTAIN 
 *EXTENT. 
 */
-inline static const char* bin(int _){
-	const char* ans = !_?"0b":bin(_>>1)+(_&1?'1':'0');
+
+inline static string bin(int _){
+	string ans = magic;
 	return ans;
 }
-
 int main(){
-	cout<<bin(2);
+	cout<<bin(23124);
 }
